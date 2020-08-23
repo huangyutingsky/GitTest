@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 模型版本 pom.xml遵守一个版本模型-->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--项目坐标—— “gav”统称为坐标 -->
+    <groupId>com.example</groupId><!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.companyname.project-group，maven会将该项目打成的jar包放本地路径：/com/companyname/project-group -->
+    <artifactId>TestMaven</artifactId><!--项目名（模块名）-->
+    <version>1.0-SNAPSHOT</version><!-- 项目版本号 -->
+
+    <!--聚合：对当前项目进行任何操作，被聚合的项目都会做相同的操作-->
+    <modules>
+        <module>A</module>
+    </modules>
+
+    <!--
+        Maven项目类型：
+           1、jar：Java项目，默认值
+           2、war：Web项目
+           3、pom：父工程
+      -->
+    <packaging>pom</packaging>
+
+    <properties>
+        <junit.version>4.13</junit.version>
+    </properties>
+
+    <!--
+        依赖管理配置声明：
+            声明配置，当前项目并不会直接引入Jar包。
+            子项目继承夫项目，子项目不能直接使用Jar包。子项目想用，必须自己声明才能使用。
+            好处：由父工程管理版本，子工程不需要管理版本
+     -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+<!--    <dependencies>-->
+<!--        <dependency>-->
+<!--            <groupId>org.slf4j</groupId>-->
+<!--            <artifactId>slf4j-simple</artifactId>-->
+<!--            <version>1.7.25</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--            <optional>true</optional>-->
+<!--            <version>1.16.18</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>junit</groupId>-->
+<!--            <artifactId>junit</artifactId>-->
+<!--            <version>4.12</version>-->
+<!--            <scope>test</scope>&lt;!&ndash;依赖作用的范围&ndash;&gt;-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
+
+</project>
